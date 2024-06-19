@@ -1,0 +1,19 @@
+[project]
+name="Stutter"
+description="A physics based boss battle for Boss Bash 2"
+license = {text = "MIT License"}
+readme="README.md"
+version="1.0"
+dependencies=[
+    "arcade@ git+https://github.com/pythonarcade/arcade#egg=development"
+]
+requires-python= ">= 3.12"
+authors =  [
+    {name = "DragonMoffon", email = "dumpy.spam.man@gmail.com"}
+]
+maintainers = [
+    {name = "DragonMoffon", email = "dumpy.spam.man@gmail.com"}
+]
+
+[tool.setuptools]
+packages = ["stutter"]
