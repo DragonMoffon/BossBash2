@@ -1,16 +1,23 @@
 import importlib.resources as pkg_resources
 
 import arcade
+import json
 
 import stutter.data.images as imgs
 import stutter.data.fonts as fonts
 import stutter.data.audio as audio
 import stutter.data.shaders as shaders
+import stutter.data.config as config
 
 
 def load_texture(name, *, fmt: str = "png", **kwargs):
     with pkg_resources.path(imgs, f"{name}.{fmt}") as texture_path:
         return arcade.load_texture(texture_path, **kwargs)
+
+
+def load_config(name):
+    with pkg_resources.open_text(config, f'{name}.json') as config_file:
+        return json.load(config_file)
 
 
 def load_font(name: str) -> None:
