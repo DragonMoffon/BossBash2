@@ -1,8 +1,9 @@
 from stutter.engine.launch import launch
+from stutter.game.game_window import Stutter
 
 
 def main():
-    launch()
+    launch(Stutter)
 
 
 if __name__ == '__main__':

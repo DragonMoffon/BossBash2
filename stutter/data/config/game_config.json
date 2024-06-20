@@ -1,4 +1,7 @@
 {
   "screen_size": [1280, 720],
-  "screen_name": "Boss Bash 2 - Stutter"
+  "screen_name": "Boss Bash 2 - Stutter",
+  "fixed_rate": 60,
+  "iterations": 10,
+  "warm_start": true
 }

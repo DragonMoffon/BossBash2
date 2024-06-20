@@ -1,6 +1,6 @@
 from stutter.engine.window import Window
 
 
-def launch():
-    win = Window()
+def launch(window: type[Window]):
+    win = window()
     win.run()
