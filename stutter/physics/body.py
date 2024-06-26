@@ -29,13 +29,31 @@ class RigidBody[T]:
         self.mass: float = mass
         self.inv_mass: float = float('inf') if not mass else 1.0 / mass
         self.inertia: float = inertia
+        self.inv_inertia: float = float('inf') if not inertia else 1.0 / inertia
 
         self.mesh: T = mesh
 
-    def capture(self) -> RigidBodyState:
-        return RigidBodyState(
-            self.position,
-            self.direction,
-            self.velocity,
-            self.rotation
-        )
+    def apply_impulse(self, impulse: Vec2, origin: Vec2):
+        """
+        Assumes instantaneous acceleration so pre-apply delta-time
+        """
+        torque = impulse.cross(origin - self.position)
+
+        self.velocity += impulse * self.inv_mass
+        self.rotation += torque * self.inv_inertia
+
+    def apply_acceleration(self, linear: Vec2 = Vec2(0.0, 0.0), angular: float = 0.0):
+        """
+        Assumes instantaneous acceleration so pre-apply delta-time
+        """
+        self.velocity += linear
+        self.rotation += angular
+
+
+def capture_rigidbody(rigidbody: RigidBody) -> RigidBodyState:
+    return RigidBodyState(
+        rigidbody.position,
+        rigidbody.direction,
+        rigidbody.velocity,
+        rigidbody.rotation
+    )

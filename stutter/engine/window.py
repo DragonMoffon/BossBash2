@@ -12,10 +12,12 @@ class Window(_Window):
 
     def _dispatch_updates(self, delta_time: float):
         # Tick main clock
-        self.dispatch_event('on_update', delta_time)
 
-        self.dispatch_event('on_fixed_update', 1 / CONFIG.fixed_rate)
         # Accumulate time for fixed update
         # If enough time accumulated do more physics steps
+        self.dispatch_event('on_fixed_update', 1 / CONFIG.fixed_rate)
+        # Calculate remainder time to lerp between simulation steps
+
+        self.dispatch_event('on_update', delta_time)
 
         # Dispatch Notifications (if have time)
